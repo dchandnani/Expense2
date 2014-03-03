@@ -3,7 +3,7 @@
 	id		    = "com.phonegap.hello-world"
 	version 	= "1.0.0">
 
-    <name>HelloWorld</name>
+    <name>Expense2</name>
     <description>
     	A sample Apache Cordova application that responds to the deviceready event.
     </description>
