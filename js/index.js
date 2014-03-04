@@ -67,6 +67,7 @@ function saveReportClicked() {
 		key = getNewKey();
 	saveReport(key, report);
 	resetFields();
+	$.mobile.navigate("#mainPage");
 }
 
 function submitReportClicked() {
@@ -76,6 +77,7 @@ function submitReportClicked() {
 		key = getNewKey();
 	saveReport(key, report);
 	resetFields();
+	$.mobile.navigate("#mainPage");
 }
 
 function pastExpensesClicked() {
