@@ -19,7 +19,7 @@
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.Storage" />
+    <gap:plugin name="org.apache.cordova.storage" />
 
 </widget>
 
