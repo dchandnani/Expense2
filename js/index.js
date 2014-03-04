@@ -14,10 +14,10 @@ function addExpenseItemClicked (event) {
 
 function itemDoneClicked(e) {
 	var o = {};
-	o.vendor = vendor.value;
-	o.cost = cost.value;
-	o.category = category.value;
-	o.date = date.value;
+	o.vendor = document.getElementById("vendor").value;
+	o.cost = document.getElementById("cost").value;
+	o.category = document.getElementById("category").value;
+	o.date = document.getElementById("date").value;
 	o.photodata = photoData;
 
 	if(itemIndex>=0)
@@ -36,28 +36,28 @@ function itemDoneClicked(e) {
            }
 	}
 
-	vendor.value = "";
-	cost.value = "";
-	category.value = "";
-	date.value = "";
+	document.getElementById("vendor").value = "";
+	document.getElementById("cost").value = "";
+	document.getElementById("category").value = "";
+	document.getElementById("date").value = "";
 
 	$.mobile.navigate("#createExpensePage");
 }
 
 function saveFields() {
-    report.title = title.value;
-	report.costCenter = costCenter.value;
-	report.interimApprover = interimApprover.value;
-	report.finalApprover = finalApprover.value;
-	report.comments = comments.value;
+    report.title = document.getElementById("title").value;
+	report.costCenter = document.getElementById("costCenter").value;
+	report.interimApprover = document.getElementById("interimApprover").value;
+	report.finalApprover = document.getElementById("finalApprover").value;
+	report.comments = document.getElementById("comments").value;
 }
 
 function resetFields() {
-	title.value = "";
-	costCenter.value = "";
-	interimApprover.value = "";
-	finalApprover.value = "";
-	comments.value = "";
+	document.getElementById("title").value = "";
+	document.getElementById("costCenter").value = "";
+	document.getElementById("interimApprover").value = "";
+	document.getElementById("finalApprover").value = "";
+	document.getElementById("comments").value = "";
 	$("#itemsBody").html("");
 }
 
@@ -103,11 +103,11 @@ function showReport(index) {
 	$.mobile.navigate("#createExpensePage");
 
 	// Set the fields
-   	title.value = report.title;
-	costCenter.value = report.costCenter;
-	interimApprover.value = report.interimApprover;
-	finalApprover.value = report.finalApprover;
-	comments.value = report.comments;
+   	document.getElementById("title").value = report.title;
+	document.getElementById("costCenter").value = report.costCenter;
+	document.getElementById("interimApprover").value = report.interimApprover;
+	document.getElementById("finalApprover").value = report.finalApprover;
+	document.getElementById("comments").value = report.comments;
 
 	$("#itemsBody").html("");
 	if(report.items!=undefined && report.items!=null) {
@@ -122,10 +122,10 @@ function showItem(index) {
 	itemIndex = index;
 	$.mobile.navigate("#expenseItemPage");
 
-	vendor.value = report.items[index].vendor;
-	cost.value = report.items[index].cost;
-	category.value = report.items[index].category;
-	date.value = report.items[index].date;
+	document.getElementById("vendor").value = report.items[index].vendor;
+	document.getElementById("cost").value = report.items[index].cost;
+	document.getElementById("category").value = report.items[index].category;
+	document.getElementById("date").value = report.items[index].date;
 	photoData = report.items[index].photodata;
 
 	var smallImage = document.getElementById('smallImage');
