@@ -1,29 +1,38 @@
 var report = {};
 var key = null;
 var reports = new Array();
-var isNewItem = false;
+var photoData = null;
+var itemIndex = -1;
 
 // cleanStore();
 
 function addExpenseItemClicked (event) {
-	isNewItem = true;
+	itemIndex = -1;
 	$.mobile.navigate("#expenseItemPage");
 }
 
 function itemDoneClicked(e) {
-	if(isNewItem) {
-		var o = {};
-		o.vendor = vendor.value;
-		o.cost = cost.value;
-		o.category = category.value;
-		o.date = date.value;
+	var o = {};
+	o.vendor = vendor.value;
+	o.cost = cost.value;
+	o.category = category.value;
+	o.date = date.value;
+	o.photodata = photoData;
 
+	if(itemIndex>=0)
+		report.items[itemIndex] = o;
+	else {
 		if(report.items==undefined)
 			report.items = [];
 		report.items.push(o);
+	}
 
-		var s = $("#itemsBody").html();
-		$("#itemsBody").html(s + "<tr onclick=\"showItem("+ (report.items.length-1) +")\"><td class=\"ui-table-priority-1\">" + o.vendor + "</td><td class=\"ui-table-priority-1\">" + o.cost + "</td><td class=\"ui-table-priority-1\">" + o.category + "</td><td class=\"ui-table-priority-1\">" + o.date + "</td></tr>");
+	$("#itemsBody").html("");
+	if(report.items!=undefined && report.items!=null) {
+           for(var i=0;i<report.items.length;i++) {
+           		var s = $("#itemsBody").html();
+				$("#itemsBody").html(s + "<tr onclick=\"showItem("+ i +")\"><td class=\"ui-table-priority-1\">" + report.items[i].vendor + "</td><td class=\"ui-table-priority-1\">" + report.items[i].cost + "</td><td class=\"ui-table-priority-1\">" + report.items[i].category + "</td><td class=\"ui-table-priority-1\">" + report.items[i].date + "</td></tr>");
+           }
 	}
 
 	vendor.value = "";
@@ -89,6 +98,7 @@ function showReport(index) {
 		return;
 
 	report = reports[index];
+	key = expenseReportKeys[index];
 	$.mobile.navigate("#createExpensePage");
 
 	// Set the fields
@@ -108,11 +118,15 @@ function showReport(index) {
 }
 
 function showItem(index) {
-	isNewItem = false;
+	itemIndex = index;
 	$.mobile.navigate("#expenseItemPage");
 
 	vendor.value = report.items[index].vendor;
 	cost.value = report.items[index].cost;
 	category.value = report.items[index].category;
 	date.value = report.items[index].date;
+
+	var smallImage = document.getElementById('smallImage');
+	smallImage.style.display = 'block';
+	smallImage.src = "data:image/jpeg;base64," + report.items[index].photodata;
 }

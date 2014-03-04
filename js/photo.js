@@ -17,6 +17,7 @@ function onPhotoDataSuccess(imageData) {
   // Uncomment to view the base64 encoded image data
   // console.log(imageData);
   // Get image handle
+  photoData = imageData;
   var smallImage = document.getElementById('smallImage');
 
   // Unhide image elements
