@@ -8,6 +8,7 @@ var itemIndex = -1;
 
 function addExpenseItemClicked (event) {
 	itemIndex = -1;
+	photoData = null;
 	$.mobile.navigate("#expenseItemPage");
 }
 
@@ -125,8 +126,13 @@ function showItem(index) {
 	cost.value = report.items[index].cost;
 	category.value = report.items[index].category;
 	date.value = report.items[index].date;
+	photoData = report.items[index].photodata;
 
 	var smallImage = document.getElementById('smallImage');
-	smallImage.style.display = 'block';
-	smallImage.src = "data:image/jpeg;base64," + report.items[index].photodata;
+	if(photoData==null || photoData == undefined)
+		smallImage.style.display = 'block';
+	else {
+		smallImage.style.display = 'block';
+		smallImage.src = "data:image/jpeg;base64," + report.items[index].photodata;
+	}
 }
